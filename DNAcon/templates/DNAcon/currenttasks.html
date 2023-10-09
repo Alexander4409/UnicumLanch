@@ -1,0 +1,23 @@
+{% extends 'DNAcon/base.html' %}
+{% load static %}
+{% block content %}
+
+<h1>Подготовка к ДНК Фонда Андрея Мельниченко</h1>
+
+<div class="block">
+    {% for material in materials %}
+    <div class="material-card">
+        <h2>{{ material.title }}</h2>
+        <p>{{ material.description }}</p>
+
+        <video width="420" height="340" controls>
+            <source src="{{ material.video.url }}" type="video/mp4">
+        </video>
+        <p>Дополнительные материалы по теме: </p>
+        <a href="{{ material.task_file.url }}" target="_blank">{{ material.task_file }}</a>
+    </div>
+    {% endfor %}
+</div>
+
+{% endblock %}
+

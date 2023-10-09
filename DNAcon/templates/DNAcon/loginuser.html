@@ -1,0 +1,17 @@
+{% extends 'DNAcon/base.html' %}
+
+{% block content %}
+<h1>Авторизация</h1>
+<form method="post" class="bg">
+  {% csrf_token %}
+  <label for="username">Имя пользователя:</label>
+  <input type="text" id="username" name="username" required>
+  <br>
+  <label for="password">Пароль:</label>
+  <input type="password" id="password" name="password" required>
+  <br>
+  <div class="center">
+    <button class="btn">Авторизация</button>
+  </div>
+</form>
+{% endblock %}

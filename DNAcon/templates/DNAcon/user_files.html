@@ -1,0 +1,31 @@
+
+{% extends 'DNAcon/base.html' %}
+{% block content %}
+<h1>Ваши файлы</h1>
+<h2>Для того чтобы мы могли легко найти и проверить ваше домашнее задание, в названии файла укажите тему, вашу группу и фамилию!</h2>
+<h2>Обратите внимание на форматы файлов для загрузки!</h2>
+<h3>Пример : "Название_темы_ИП-64_Иванов_А_А"</h3>
+<h2>Загрузить файл можно только в pdf, doc, docx и txt</h2>
+
+<div class="form_upload">
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Загрузить</button>
+    </form>
+</div>
+
+
+  <h2>Список ваших файлов:</h2>
+ <ul>
+    {% for user_file in user_files %}
+      <li>
+        <a href="{{ user_file.uploaded_file.url }}" target="_blank">{{ user_file.uploaded_file.name }}</a>
+        <form method="post" action="{% url 'delete_file' user_file.id %}">
+          {% csrf_token %}
+          <button type="submit" class="btn btn-danger btn-sm">Удалить</button>
+        </form>
+      </li>
+    {% endfor %}
+  </ul>
+{% endblock %}
